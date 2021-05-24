@@ -6,7 +6,5 @@ export const List = ()=>{
             <h2>TodoListルーター版</h2>
             <p>List ID:{listId}</p>
         </div>
-
     ) 
-
 }

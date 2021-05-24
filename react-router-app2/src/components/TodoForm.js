@@ -3,8 +3,6 @@ import {connect} from 'react-redux';
 // import {BrowserRouter as Router, Switch,Route,Link } from 'react-router-dom';
 import {addTodo,deleteTodo,doneTodo} from '../actions'
 import {useHistory} from 'react-router-dom';
-// import {Home} from './childComponent/Home'
-// import {About} from './childComponent/About'
 // import {List} from './childComponent/List'
 // import {Error} from './childComponent/Error'
 // import Nav from './Navi'
@@ -19,11 +17,14 @@ const TodoForm =(props)=>{
   const createTask = e =>{
     setTask(e.target.value)
   }
-  const addTask=()=>{
+  const addTask=(id)=>{
     if(task === '')return
-    props.addTodo(task)
+    // todo.id = props.todos.length +1;
+    id = props.todos.length +1
+    props.addTodo(task,id)
     setTask('')
     addClick('/todolist')
+    // task.id = props.todos.length +1;
   }
   const deleteTask=(index)=>{
     props.deleteTodo(index)
@@ -64,7 +65,7 @@ const mapStateToProps = state =>({
 })
 
 const mapDispatchToProps = dispatch =>({
-  addTodo:(task)=>dispatch(addTodo(task)),
+  addTodo:(task,id)=>dispatch(addTodo(task,id)),
   deleteTodo:(index)=>dispatch(deleteTodo(index)),
   doneTodo:(index)=>dispatch(doneTodo(index))
 })

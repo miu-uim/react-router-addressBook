@@ -5,36 +5,22 @@ import {addTodo,deleteTodo,doneTodo} from '../actions'
 // import {Home} from './childComponent/Home'
 // import {About} from './childComponent/About'
 // import {List} from './childComponent/List'
-import {Error} from './childComponent/Error'
-import TodoForm from './TodoForm';
+// import TodoForm from './TodoForm';
 import {useParams} from 'react-router-dom';
 
 
 const TodoDetail =(props)=>{
   const [task,setTask]=useState('')
 
-//   const createTask = e =>{
-//     setTask(e.target.value)
-//   }
-//   const addTask=()=>{
-//     if(task === '')return
-//     props.addTodo(task)
-//     setTask('')
-//     addClick('/todolist')
-//   }
+  const {todoId}= useParams();
 
-//   const deleteTask=(index)=>{
-//     props.deleteTodo(index)
-//   }
-//   const doneTask=(index)=>{
-//     props.doneTodo(index)
-//   }
   return(
     <React.Fragment>
         <h2>タスク詳細画面</h2>
-        {props.todos.map((todo,index)=>(
+        {/* {props.todos.map((todo,index)=>(
             <li key={index}>{todo.title}</li>
-        ))}
+        ))} */}
+        {props.todos[{todoId}]}
     </React.Fragment>
   )
 }

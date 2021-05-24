@@ -20,7 +20,7 @@ const App =()=>{
             <Route path='/' exact component={TodoForm}/>
             <Route path ='/todolist' exact component={TodoList} />
             {/* <Route path ='/list/:listId' exact component={List} /> */}
-            <Route path ='/tododetail' component={TodoDetail}/>
+            <Route path ='/tododetail/:todoId' exact component={TodoDetail}/>
             <Route component={Error} />
           </Switch>
       </Router>
