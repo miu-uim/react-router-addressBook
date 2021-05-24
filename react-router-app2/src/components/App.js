@@ -6,6 +6,7 @@ import {Home} from './childComponent/Home'
 import {About} from './childComponent/About'
 import {List} from './childComponent/List'
 import {Error} from './childComponent/Error'
+import Nav from './Navi'
 // import {useParams} from 'react-router-dom';
 
 
@@ -29,21 +30,8 @@ const App =(props)=>{
   return(
     <React.Fragment>
       <Router>
+        <Nav />
         <div>
-          <nav>
-            <ul>
-
-              <li>
-                <Link to='/'>Home</Link>
-              </li>
-              <li>
-                <Link to='/about'>About</Link>
-              </li>
-              <li>
-                <Link to='/list/777'>List</Link>
-              </li>
-            </ul>
-          </nav>
           <Switch>
             <Route path='/' exact component={Home} />
             <Route path ='/about' exact component={About} />
