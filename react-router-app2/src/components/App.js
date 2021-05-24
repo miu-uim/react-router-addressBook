@@ -1,68 +1,30 @@
-import React, {useState} from 'react';
-import {connect} from 'react-redux';
+import React from 'react';
 import {BrowserRouter as Router, Switch,Route,Link } from 'react-router-dom';
-import {addTodo,deleteTodo,doneTodo} from '../actions'
 import {Home} from './childComponent/Home'
 import {About} from './childComponent/About'
-import {List} from './childComponent/List'
+// import {List} from './childComponent/List'
 import {Error} from './childComponent/Error'
 import Nav from './Navi'
+import TodoForm from './TodoForm';
+import TodoList from './TodoList';
 // import {useParams} from 'react-router-dom';
 
 
-const App =(props)=>{
-  const [task,setTask]=useState('')
-
-  const createTask = e =>{
-    setTask(e.target.value)
-  }
-  const addTask=()=>{
-    if(task === '')return
-    props.addTodo(task)
-    setTask('')
-  }
-  const deleteTask=(index)=>{
-    props.deleteTodo(index)
-  }
-  const doneTask=(index)=>{
-    props.doneTodo(index)
-  }
+const App =()=>{
   return(
     <React.Fragment>
       <Router>
         <Nav />
-        <div>
+        <h2>TODO List</h2>
+        <hr></hr>
           <Switch>
-            <Route path='/' exact component={Home} />
-            <Route path ='/about' exact component={About} />
-            <Route path ='/list/:listId' exact component={List} />
+            <Route path='/' exact component={TodoForm}/>
+            <Route path ='/todolist' exact component={TodoList} />
+            {/* <Route path ='/list/:listId' exact component={List} /> */}
             <Route component={Error} />
           </Switch>
-        </div>
       </Router>
-      <h2>TODO List Router</h2>
-      <input value ={task} onChange={createTask} />
-      <button onClick={addTask}>追加</button>
-      <ul>
-        {props.todos.map((todo,index)=>(
-          <li key={index}>
-          {todo.flg ? <del>{todo.title}</del> : <span>{todo.title}</span>}
-          {todo.flg ? <button onClick={()=>{doneTask(index)}}>未完了</button> : <button onClick={()=>{doneTask(index)}}>完了</button>}
-          <button onClick={()=>{deleteTask(index)}}>削除</button>
-          </li>
-        ))}
-      </ul>
     </React.Fragment>
   )
 }
-const mapStateToProps = state =>({
-  todos: state.todoReducer.todos
-})
-
-const mapDispatchToProps = dispatch =>({
-  addTodo:(task)=>dispatch(addTodo(task)),
-  deleteTodo:(index)=>dispatch(deleteTodo(index)),
-  doneTodo:(index)=>dispatch(doneTodo(index))
-})
-
-export default connect(mapStateToProps,mapDispatchToProps) (App);
+export default App;

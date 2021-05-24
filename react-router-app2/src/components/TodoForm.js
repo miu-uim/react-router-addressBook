@@ -2,11 +2,19 @@ import React, {useState} from 'react';
 import {connect} from 'react-redux';
 // import {BrowserRouter as Router, Switch,Route,Link } from 'react-router-dom';
 import {addTodo,deleteTodo,doneTodo} from '../actions'
+import {useHistory} from 'react-router-dom';
+// import {Home} from './childComponent/Home'
+// import {About} from './childComponent/About'
+// import {List} from './childComponent/List'
+// import {Error} from './childComponent/Error'
+// import Nav from './Navi'
 // import {useParams} from 'react-router-dom';
 
-
-const TodoList =(props)=>{
+const TodoForm =(props)=>{
   const [task,setTask]=useState('')
+
+  const history = useHistory();
+  const addClick = path =>history.push(path);
 
   const createTask = e =>{
     setTask(e.target.value)
@@ -15,6 +23,7 @@ const TodoList =(props)=>{
     if(task === '')return
     props.addTodo(task)
     setTask('')
+    addClick('/todolist')
   }
   const deleteTask=(index)=>{
     props.deleteTodo(index)
@@ -35,10 +44,10 @@ const TodoList =(props)=>{
           </Switch>
         </div>
       </Router> */}
-      <h2>タスク一覧</h2>
-      {/* <input value ={task} onChange={createTask} />
-      <button onClick={addTask}>追加</button> */}
-      <ul>
+      <h2>新規タスクを追加する</h2>
+      <input value ={task} onChange={createTask} />
+      <button onClick={addTask}>追加</button>
+      {/* <ul>
         {props.todos.map((todo,index)=>(
           <li key={index}>
           {todo.flg ? <del>{todo.title}</del> : <span>{todo.title}</span>}
@@ -46,7 +55,7 @@ const TodoList =(props)=>{
           <button onClick={()=>{deleteTask(index)}}>削除</button>
           </li>
         ))}
-      </ul>
+      </ul> */}
     </React.Fragment>
   )
 }
@@ -60,4 +69,4 @@ const mapDispatchToProps = dispatch =>({
   doneTodo:(index)=>dispatch(doneTodo(index))
 })
 
-export default connect(mapStateToProps,mapDispatchToProps) (TodoList);
+export default connect(mapStateToProps,mapDispatchToProps) (TodoForm);

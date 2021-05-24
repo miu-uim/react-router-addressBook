@@ -6,8 +6,8 @@ const Nav = props =>{
     const handleLink = path =>history.push(path);
     return (
         <nav>
-            <button onClick={()=>handleLink('/')}>TODO List</button>
-            <button onClick={()=>handleLink('/about')}>About</button>
+            <button onClick={()=>handleLink('/')}>新規タスク登録</button>
+            <button onClick={()=>handleLink('/todolist')}>タスク一覧</button>
         </nav>
     )
 }
