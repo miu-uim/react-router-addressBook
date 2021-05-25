@@ -1,4 +1,4 @@
 import {combineReducers} from 'redux';
-import todoReducer from './todoReducer'
+import createTicket from './createTicket'
 
-export default combineReducers({todoReducer})
+export default combineReducers({createTicket})
